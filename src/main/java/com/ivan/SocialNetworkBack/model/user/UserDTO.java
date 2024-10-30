@@ -1,11 +1,14 @@
 package com.ivan.SocialNetworkBack.model.user;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserDTO {
     private String name;
     private String lastname;
     private String username;
     private String password;
     private String email;
+    private MultipartFile profileImage;
 
     public UserDTO(String name, String lastname, String username, String password, String email) {
         this.name = name;
@@ -13,6 +16,15 @@ public class UserDTO {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public UserDTO(String name, String lastname, String username, String password, String email, MultipartFile profileImage) {
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.profileImage = profileImage;
     }
 
     public UserDTO() {
@@ -56,6 +68,14 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public MultipartFile getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(MultipartFile profileImage) {
+        this.profileImage = profileImage;
     }
 
     @Override

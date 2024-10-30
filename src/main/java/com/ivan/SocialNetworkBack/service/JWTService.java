@@ -2,6 +2,7 @@ package com.ivan.SocialNetworkBack.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,34 +21,23 @@ import java.util.function.Function;
 
 @Service
 public class JWTService {
-    private String secretKey="";
+    private final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    public JWTService() {
-        try {
-            KeyGenerator keyGenerator=KeyGenerator.getInstance("HmacSHA256");
-            SecretKey sk=keyGenerator.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(sk.getEncoded());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     public String generateToken(String username) {
-
-
         Map<String,Object> claims=new HashMap<>();
         return Jwts.builder()
                 .addClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+60*60*30))
-                .signWith(getKey())
+                .setExpiration(new Date(System.currentTimeMillis()+60*60*24*1000))
+                .signWith(key)
                 .compact();
     }
 
-    private Key getKey() {
-        byte[] keybytes= Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor(keybytes);
+    private SecretKey getKey() {
+        return Keys.secretKeyFor(SignatureAlgorithm.HS256); // ili HS384, HS512, zavisno od vaših potreba
     }
 
     public String extractUsername(String token) {
@@ -61,7 +51,7 @@ public class JWTService {
 
     private Claims extractAllClaims(String token){
         return Jwts.parserBuilder()
-                .setSigningKey(getKey())
+                .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token) // Ensure that you are using the signed method
                 .getBody();

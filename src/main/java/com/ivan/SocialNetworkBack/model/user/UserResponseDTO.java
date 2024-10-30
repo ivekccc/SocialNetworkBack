@@ -1,15 +1,18 @@
 package com.ivan.SocialNetworkBack.model.user;
 
 public class UserResponseDTO {
-    private int id;
+    private String id;
     private String name;
     private String lastname;
     private String username;
     private String email;
     private String role;
     private String bio;
+    private String profileImageUrl;
+    private int followersCount;
+    private int followingCount;
 
-    public UserResponseDTO(int id, String name, String lastname, String username, String email, String role, String bio) {
+    public UserResponseDTO(String id, String name, String lastname, String username, String email, String role, String bio, String profileImageUrl, int followersCount, int followingCount) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -17,16 +20,19 @@ public class UserResponseDTO {
         this.email = email;
         this.role = role;
         this.bio = bio;
+        this.profileImageUrl = profileImageUrl;
+        this.followersCount = followersCount;
+        this.followingCount = followingCount;
     }
 
     public UserResponseDTO() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,6 +84,31 @@ public class UserResponseDTO {
         this.bio = bio;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public void setFollowersCount(int followersCount) {
+        this.followersCount = followersCount;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(int followingCount) {
+        this.followingCount = followingCount;
+    }
+
     @Override
     public String toString() {
         return "UserResponseDTO{" +
@@ -88,6 +119,7 @@ public class UserResponseDTO {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", bio='" + bio + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
                 '}';
     }
 }

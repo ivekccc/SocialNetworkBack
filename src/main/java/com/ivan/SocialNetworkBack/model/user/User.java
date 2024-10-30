@@ -1,10 +1,12 @@
 package com.ivan.SocialNetworkBack.model.user;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
 public class User {
-    private int id;
+    @Id
+    private String id;
     private String name;
     private String lastname;
     private String username;
@@ -12,8 +14,11 @@ public class User {
     private String email;
     private String role;
     private String bio;
+    private String profileImageUrl;
+    private int followersCount;
+    private int followingCount;
 
-    public User(int id, String name, String lastname, String username, String password, String email, String role, String bio) {
+    public User(String id, String name, String lastname, String username, String password, String email, String role, String bio, String profileImageUrl) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -22,16 +27,17 @@ public class User {
         this.email = email;
         this.role = role;
         this.bio = bio;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public User() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,6 +97,30 @@ public class User {
         this.bio = bio;
     }
 
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public int getFollowersCount() {
+        return followersCount;
+    }
+
+    public void setFollowersCount(int followersCount) {
+        this.followersCount = followersCount;
+    }
+
+    public int getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(int followingCount) {
+        this.followingCount = followingCount;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -102,6 +132,9 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", bio='" + bio + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                ", followersCount=" + followersCount +
+                ", followingCount=" + followingCount +
                 '}';
     }
 }
