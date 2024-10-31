@@ -21,8 +21,7 @@ public class FollowService {
     @Transactional
     public void followUser(String followerId, String followingId) {
         if (!followRepository.existsByFollowerIdAndFollowingId(followerId, followingId)) {
-            Follow follow = new Follow(followerId, followingId);
-            follow.setCreatedAt(new Date().getTime());
+            Follow follow = new Follow(followerId, followingId,new Date());
             followRepository.save(follow);
 
             // Ažuriranje brojača

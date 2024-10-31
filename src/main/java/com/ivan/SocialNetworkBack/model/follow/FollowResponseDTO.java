@@ -1,28 +1,21 @@
 package com.ivan.SocialNetworkBack.model.follow;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
 
-@Document(collection = "follows")
-@CompoundIndex(def = "{'followerId': 1, 'followingId': 1}", unique = true)
-public class Follow {
-    @Id
+public class FollowResponseDTO {
     private String id;
     private String followerId;
     private String followingId;
     private Date createdAt;
 
-    public Follow(String id, String followerId, String followingId, Date createdAt) {
+    public FollowResponseDTO(String id, String followerId, String followingId, Date createdAt) {
         this.id = id;
         this.followerId = followerId;
         this.followingId = followingId;
         this.createdAt = createdAt;
     }
 
-    public Follow(String followerId, String followingId, Date createdAt) {
+    public FollowResponseDTO(String followerId, String followingId, Date createdAt) {
         this.followerId = followerId;
         this.followingId = followingId;
         this.createdAt = createdAt;
@@ -59,5 +52,4 @@ public class Follow {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
 }
