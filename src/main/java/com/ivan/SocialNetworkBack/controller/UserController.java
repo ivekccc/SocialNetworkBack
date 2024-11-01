@@ -51,11 +51,12 @@ public class UserController {
             @RequestParam(value = "profileImage", required = false) MultipartFile profileImage
     ) {
         try {
-            UserDTO userDto = new UserDTO(name, lastname, username, password, email,profileImage);
+            UserDTO userDto = new UserDTO(name, lastname, username, password, email, profileImage);
             User registeredUser = userService.register(userDto);
             return ResponseEntity.ok(registeredUser);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Registration failed: " + e.getMessage());
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body("Registration failed:  " + e.getMessage());
         }
     }
 

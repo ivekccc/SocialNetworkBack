@@ -27,7 +27,7 @@ public class PostServiceImpl implements PostService{
     @Override
     public Post createPost(PostDTO postDTO, User currentUser)throws IOException  {
         Post post=new Post();
-        post.setAuthorId(currentUser.getId());
+        post.setAuthorUsername(currentUser.getUsername());
         post.setDescription(postDTO.getDescription());
         post.setLikes(null);
         if (postDTO.getContentImage() != null && !postDTO.getContentImage().isEmpty()) {

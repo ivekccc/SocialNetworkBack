@@ -37,6 +37,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User register(UserDTO userDto) throws IOException {
+        if (userRepository.findByUsername(userDto.getUsername()).isPresent()) {
+            throw new RuntimeException("Username is already taken");
+        }
         User user = new User();
         user.setName(userDto.getName());
         user.setLastname(userDto.getLastname());
@@ -71,7 +74,7 @@ public class UserServiceImpl implements UserService{
 
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUsername(username).get();
     }
 
     @Override

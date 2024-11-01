@@ -9,23 +9,23 @@ public class PostResponseDTO {
     private String id;
     private String contentImage;
     private String description;
-    private String authorId;
+    private String authorUsername;
     private ZonedDateTime createdAt;
     private List<String> likes;
 
-    public PostResponseDTO(String id, String contentImage, String description, String authorId, ZonedDateTime createdAt, List<String> likes) {
+    public PostResponseDTO(String id, String contentImage, String description, String authorUsername, ZonedDateTime createdAt, List<String> likes) {
         this.id = id;
         this.contentImage = contentImage;
         this.description = description;
-        this.authorId = authorId;
+        this.authorUsername = authorUsername;
         this.createdAt = createdAt;
         this.likes = likes;
     }
 
-    public PostResponseDTO(String contentImage, String description, String authorId, ZonedDateTime createdAt, List<String> likes) {
+    public PostResponseDTO(String contentImage, String description, String authorUsername, ZonedDateTime createdAt, List<String> likes) {
         this.contentImage = contentImage;
         this.description = description;
-        this.authorId = authorId;
+        this.authorUsername = authorUsername;
         this.createdAt = createdAt;
         this.likes = likes;
     }
@@ -57,12 +57,12 @@ public class PostResponseDTO {
         this.description = description;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorUsername() {
+        return authorUsername;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorUsername(String authorId) {
+        this.authorUsername = authorId;
     }
 
     public ZonedDateTime getCreatedAt() {

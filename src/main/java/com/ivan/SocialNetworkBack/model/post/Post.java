@@ -13,23 +13,23 @@ public class Post {
     private String id;
     private String contentImage;
     private String description;
-    private String authorId;
+    private String authorUsername;
     private LocalDate createdAt;
     private List<String> likes;
 
-    public Post(String id, String contentImage, String description, String authorId, LocalDate createdAt, List<String> likes) {
+    public Post(String id, String contentImage, String description, String authorUsername, LocalDate createdAt, List<String> likes) {
         this.id = id;
         this.contentImage = contentImage;
         this.description = description;
-        this.authorId = authorId;
+        this.authorUsername = authorUsername;
         this.createdAt = createdAt;
         this.likes = likes;
     }
 
-    public Post(String contentImage, String description, String authorId, LocalDate createdAt, List<String> likes) {
+    public Post(String contentImage, String description, String authorUsername, LocalDate createdAt, List<String> likes) {
         this.contentImage = contentImage;
         this.description = description;
-        this.authorId = authorId;
+        this.authorUsername = authorUsername;
         this.createdAt = createdAt;
         this.likes = likes;
     }
@@ -62,12 +62,12 @@ public class Post {
         this.description = description;
     }
 
-    public String getAuthorId() {
-        return authorId;
+    public String getAuthorUsername() {
+        return authorUsername;
     }
 
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
+    public void setAuthorUsername(String authorId) {
+        this.authorUsername = authorId;
     }
 
     public LocalDate getCreatedAt() {
