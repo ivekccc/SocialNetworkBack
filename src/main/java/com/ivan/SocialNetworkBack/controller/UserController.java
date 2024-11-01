@@ -5,7 +5,7 @@ import com.ivan.SocialNetworkBack.model.user.UserDTO;
 import com.ivan.SocialNetworkBack.model.user.UserPrincipal;
 import com.ivan.SocialNetworkBack.model.user.UserResponseDTO;
 import com.ivan.SocialNetworkBack.service.UserServiceImpl;
-import com.ivan.SocialNetworkBack.service.FollowService;
+import com.ivan.SocialNetworkBack.service.FollowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +22,7 @@ public class UserController {
     private UserServiceImpl userService;
 
     @Autowired
-    private FollowService followService;
+    private FollowServiceImpl followServiceImpl;
 
     @GetMapping("/profile")
     public UserResponseDTO getUserProfile(@AuthenticationPrincipal UserPrincipal userPrincipal) {
@@ -71,7 +71,7 @@ public class UserController {
     ) {
         try {
             User currentUser = userService.findByUsername(userPrincipal.getUsername());
-            followService.followUser(currentUser.getId(), userId);
+            followServiceImpl.followUser(currentUser.getId(), userId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -85,7 +85,7 @@ public class UserController {
     ) {
         try {
             User currentUser = userService.findByUsername(userPrincipal.getUsername());
-            followService.unfollowUser(currentUser.getId(), userId);
+            followServiceImpl.unfollowUser(currentUser.getId(), userId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
