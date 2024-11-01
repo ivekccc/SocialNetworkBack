@@ -96,7 +96,6 @@ public class UserController {
     @GetMapping("/users/search")
     public ResponseEntity<List<UserResponseDTO>> searchUsers(@RequestParam String query) {
         List<UserResponseDTO> users = userService.searchUsers(query);
-        System.out.println("111");
         return ResponseEntity.ok(users);
     }
 

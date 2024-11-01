@@ -97,9 +97,15 @@ public class UserServiceImpl implements UserService{
             ))
             .collect(Collectors.toList());
     }
-
+    @Override
     public UserResponseDTO convertToUserResponseDTO(User user) {
         return new UserResponseDTO(user.getId(),user.getName(),user.getLastname(),user.getUsername(),user.getEmail()
         ,user.getRole(),user.getBio(),user.getProfileImageUrl(),user.getFollowersCount(),user.getFollowingCount());
     }
+
+    public String findProfileImageUrlByUsername(String username) {
+        return userRepository.findProfileImageUrlByUsername(username)
+                .orElse(null); // Vraća null ako korisnik nije pronađen
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.ivan.SocialNetworkBack.model.post;
 
-import java.time.ZonedDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PostResponseDTO {
@@ -10,22 +9,25 @@ public class PostResponseDTO {
     private String contentImage;
     private String description;
     private String authorUsername;
-    private ZonedDateTime createdAt;
+    private String authorProfileImage;
+    private LocalDate createdAt;
     private List<String> likes;
 
-    public PostResponseDTO(String id, String contentImage, String description, String authorUsername, ZonedDateTime createdAt, List<String> likes) {
+    public PostResponseDTO(String id, String contentImage, String description, String authorUsername, String authorProfileImage, LocalDate createdAt, List<String> likes) {
         this.id = id;
         this.contentImage = contentImage;
         this.description = description;
         this.authorUsername = authorUsername;
+        this.authorProfileImage = authorProfileImage;
         this.createdAt = createdAt;
         this.likes = likes;
     }
 
-    public PostResponseDTO(String contentImage, String description, String authorUsername, ZonedDateTime createdAt, List<String> likes) {
+    public PostResponseDTO(String contentImage, String description, String authorUsername, String authorProfileImage, LocalDate createdAt, List<String> likes) {
         this.contentImage = contentImage;
         this.description = description;
         this.authorUsername = authorUsername;
+        this.authorProfileImage = authorProfileImage;
         this.createdAt = createdAt;
         this.likes = likes;
     }
@@ -65,11 +67,11 @@ public class PostResponseDTO {
         this.authorUsername = authorId;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -81,6 +83,14 @@ public class PostResponseDTO {
         this.likes = likes;
     }
 
+    public String getAuthorProfileImage() {
+        return authorProfileImage;
+    }
+
+    public void setAuthorProfileImage(String authorProfileImage) {
+        this.authorProfileImage = authorProfileImage;
+    }
+
     @Override
     public String toString() {
         return "PostResponseDTO{" +
@@ -88,6 +98,7 @@ public class PostResponseDTO {
                 ", contentImage='" + contentImage + '\'' +
                 ", description='" + description + '\'' +
                 ", authorUsername='" + authorUsername + '\'' +
+                ", authorProfileImage='" + authorProfileImage + '\'' +
                 ", createdAt=" + createdAt +
                 ", likes=" + likes +
                 '}';

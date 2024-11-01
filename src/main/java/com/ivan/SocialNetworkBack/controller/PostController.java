@@ -2,6 +2,7 @@ package com.ivan.SocialNetworkBack.controller;
 
 import com.ivan.SocialNetworkBack.model.post.Post;
 import com.ivan.SocialNetworkBack.model.post.PostDTO;
+import com.ivan.SocialNetworkBack.model.post.PostResponseDTO;
 import com.ivan.SocialNetworkBack.model.user.User;
 import com.ivan.SocialNetworkBack.model.user.UserPrincipal;
 import com.ivan.SocialNetworkBack.service.PostServiceImpl;
@@ -34,7 +35,7 @@ public class PostController {
     }
 
     @GetMapping("/allPosts")
-    public List<Post> getAllPosts() {
+    public List<PostResponseDTO> getAllPosts() {
         return postService.getAllPosts();
     }
 }

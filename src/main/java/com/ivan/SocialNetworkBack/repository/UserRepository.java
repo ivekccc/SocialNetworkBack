@@ -2,6 +2,7 @@ package com.ivan.SocialNetworkBack.repository;
 
 import com.ivan.SocialNetworkBack.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
@@ -12,5 +13,9 @@ public interface UserRepository extends MongoRepository<User,String> {
 
     List<User> findByNameContainingIgnoreCaseOrLastnameContainingIgnoreCaseOrUsernameContainingIgnoreCase(
         String name, String lastname, String username);
+
+    @Query(value = "{ 'username': ?0 }", fields = "{ 'profileImageUrl': 1 }")
+    Optional<String> findProfileImageUrlByUsername(String username);
+
 
 }
