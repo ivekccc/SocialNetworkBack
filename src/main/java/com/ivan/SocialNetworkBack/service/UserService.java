@@ -12,4 +12,5 @@ public interface UserService {
     String verify(User user);
     User findByUsername(String username);
     List<UserResponseDTO> searchUsers(String query);
+    UserResponseDTO convertToUserResponseDTO(User user);
 }

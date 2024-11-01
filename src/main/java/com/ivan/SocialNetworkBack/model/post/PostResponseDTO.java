@@ -80,4 +80,16 @@ public class PostResponseDTO {
     public void setLikes(List<String> likes) {
         this.likes = likes;
     }
+
+    @Override
+    public String toString() {
+        return "PostResponseDTO{" +
+                "id='" + id + '\'' +
+                ", contentImage='" + contentImage + '\'' +
+                ", description='" + description + '\'' +
+                ", authorUsername='" + authorUsername + '\'' +
+                ", createdAt=" + createdAt +
+                ", likes=" + likes +
+                '}';
+    }
 }

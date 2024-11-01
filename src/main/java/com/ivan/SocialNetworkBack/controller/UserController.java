@@ -100,4 +100,14 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/users/{username}")
+    public UserResponseDTO getUserByUserName(@PathVariable String username){
+
+        User user=userService.findByUsername(username);
+
+        return  userService.convertToUserResponseDTO(user);
+
+
+    }
+
 }
