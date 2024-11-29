@@ -8,11 +8,15 @@ import com.ivan.SocialNetworkBack.service.UserServiceImpl;
 import com.ivan.SocialNetworkBack.service.FollowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -107,6 +111,29 @@ public class UserController {
         return  userService.convertToUserResponseDTO(user);
 
 
+    }
+
+    @MessageMapping("/user.addUser")
+    @SendTo("/user/public")
+    public User addUser(
+            @Payload User user
+    ) {
+        userService.saveUser(user);
+        return user;
+    }
+
+    @MessageMapping("/user.disconnectUser")
+    @SendTo("/user/public")
+    public User disconnectUser(
+            @Payload User user
+    ) {
+        userService.disconnect(user);
+        return user;
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> findConnectedUsers() {
+        return ResponseEntity.ok(userService.findConnectedUsers());
     }
 
 }

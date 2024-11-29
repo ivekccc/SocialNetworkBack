@@ -1,5 +1,6 @@
 package com.ivan.SocialNetworkBack.service;
 
+import com.ivan.SocialNetworkBack.model.user.Status;
 import com.ivan.SocialNetworkBack.model.user.User;
 import com.ivan.SocialNetworkBack.model.user.UserDTO;
 import com.ivan.SocialNetworkBack.model.user.UserResponseDTO;
@@ -106,6 +107,25 @@ public class UserServiceImpl implements UserService{
     public String findProfileImageUrlByUsername(String username) {
         return userRepository.findProfileImageUrlByUsername(username)
                 .orElse(null); // Vraća null ako korisnik nije pronađen
+    }
+
+
+    public void saveUser(User user) {
+        user=userRepository.findByUsername(user.getUsername()).orElse(null);
+        user.setStatus(Status.ONLINE);
+        userRepository.save(user);
+    }
+
+    public void disconnect(User user) {
+        var storedUser = userRepository.findByUsername(user.getUsername()).orElse(null);
+        if (storedUser != null) {
+            storedUser.setStatus(Status.OFFLINE);
+            userRepository.save(storedUser);
+        }
+    }
+
+    public List<User> findConnectedUsers() {
+        return userRepository.findAllByStatus(Status.ONLINE);
     }
 
 }

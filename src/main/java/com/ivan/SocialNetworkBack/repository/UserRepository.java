@@ -1,5 +1,6 @@
 package com.ivan.SocialNetworkBack.repository;
 
+import com.ivan.SocialNetworkBack.model.user.Status;
 import com.ivan.SocialNetworkBack.model.user.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -18,4 +19,5 @@ public interface UserRepository extends MongoRepository<User,String> {
     Optional<String> findProfileImageUrlByUsername(String username);
 
 
+    List<User> findAllByStatus(Status status);
 }
